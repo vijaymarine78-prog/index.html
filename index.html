@@ -1697,7 +1697,18 @@
                                 pageCanvas.height = Math.min(pageHeightPx, canvas.height - yOffset);
 
                                 const ctx = pageCanvas.getContext('2d');
-                                ctx.drawImage(canvas, 0, -yOffset, canvas.width, canvas.height);
+                              //  ctx.drawImage(canvas, 0, -yOffset, canvas.width, canvas.height);
+//new code for error second page//
+ctx.drawImage(
+    canvas,                    // source image
+    0, yOffset,               // source x, y (where to copy from)
+    canvas.width,             // source width
+    pageCanvas.height,        // source height (section to copy)
+    0, 0,                     // destination x, y
+    pageCanvas.width,         // destination width
+    pageCanvas.height         // destination height
+);
+//new code ends//
 
                                 pdf.addImage(pageCanvas.toDataURL('image/png'), 'PNG', 0, 0, imgW, A4_H);
                                 yOffset += pageHeightPx;
